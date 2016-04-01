@@ -20,11 +20,13 @@ Vagrant
 
 1.Create diractoty with any name that you want with read and execute privilege to all users.
 
+
 2.After installtion open your command line and navigate to the diractiory that you created.
 
 3.Run the command  `vagrant init` that will create a vagrantfile.
 
 4.You can take the vagrantfile that i uploaded to this repo (if so skip instruction 3) or just copy the contant to your vagrantfile you just created.
+**(You can take all the diractory i uploaded to this repo and past it there if you don't want to create them manually, it contains all the chef diractories and nginx nessesery files, i will talk about it in the chef section)**
 
 Vagrant Box's
 ---
@@ -36,7 +38,8 @@ A.https://atlas.hashicorp.com/boxes/search
 
 B.http://www.vagrantbox.es/
 
-You can see that in the vagrantfile i tell the vagrant to use this box (ubuntu/trusty64) in these lines. (these lines of code will accually go and download the box automaticlly). 
+You can see that in the vagrantfile i tell the vagrant to use this box (ubuntu/trusty64) in these lines. 
+(these lines of code will all so go and download the box automaticlly). 
 
 ```
 Vagrant.configure(2) do |config|
