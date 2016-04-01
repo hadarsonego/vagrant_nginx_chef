@@ -38,11 +38,11 @@ B.http://www.vagrantbox.es/
 
 You can see that in the vagrantfile i tell the vagrant to use this box (ubuntu/trusty64) in these lines - 
 
-...
+```
 Vagrant.configure(2) do |config|
   config.vm.box = "ubuntu/trusty64"
 end
-...
+```
 
 
 chef-solo
