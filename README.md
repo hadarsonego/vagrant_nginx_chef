@@ -11,13 +11,14 @@ Downloads & Install
 
 2.Download Virtualbox tool from Virtualbox website - https://www.virtualbox.org/wiki/Downloads
 
+
 #Getting ready
 
 
 Vagrant
 ---
 
-1.Create diractoty with ant name that you want with read and execute privilege to all users.
+1.Create diractoty with any name that you want with read and execute privilege to all users.
 
 2.After installtion open your command line and navigate to the diractiory that you created.
 
@@ -31,9 +32,17 @@ Vagrant Box's
 Vagrant box is a pri-configured virtual box instance that you can download from these websites for your need.
 In our case we used "ubuntu/trusty64" that has allready chef & ruby installed and i dowsnloaded it from the first website.
 
-1.https://atlas.hashicorp.com/boxes/search
+A.https://atlas.hashicorp.com/boxes/search
 
-2.http://www.vagrantbox.es/
+B.http://www.vagrantbox.es/
+
+You can see that in the vagrantfile i tell the vagrant to use this box (ubuntu/trusty64) in these lines - 
+
+...
+Vagrant.configure(2) do |config|
+  config.vm.box = "ubuntu/trusty64"
+end
+...
 
 
 chef-solo
