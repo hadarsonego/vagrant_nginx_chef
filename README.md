@@ -11,12 +11,17 @@ Downloads & install
 
 2.Download Virtualbox tool from Virtualbox website - https://www.virtualbox.org/wiki/Downloads
 
-initialization
----
+#Getting ready
+
+
 Vagrant
+---
 
-1.Create diractoty with ant name that you want with read and execute privilege to all users
+1.Create diractoty with ant name that you want with read and execute privilege to all users.
 
-2.After installtion open your command line and navigate to the diractiory that you created
+2.After installtion open your command line and navigate to the diractiory that you created.
 
-3.Run the command  `vagrant init`
+3.Run the command  `vagrant init` that will create a vagrantfile.
+
+4.You can take the vagrantfile that i uploaded to this repo (if so skip instruction 3) or just copy the contant to your vagrantfile you just created.
+
