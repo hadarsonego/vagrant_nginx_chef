@@ -31,13 +31,12 @@ Vagrant Box's
 
 Vagrant box is a pri-configured virtual box instance that you can download from these websites for your need.
 In our case we used "ubuntu/trusty64" that has allready chef & ruby installed and i dowsnloaded it from the first website.
-(If you want to download it from command line you can use `vagrant init ubuntu/trusty64; vagrant up --provider virtualbox`command.
 
 A.https://atlas.hashicorp.com/boxes/search
 
 B.http://www.vagrantbox.es/
 
-You can see that in the vagrantfile i tell the vagrant to use this box (ubuntu/trusty64) in these lines - 
+You can see that in the vagrantfile i tell the vagrant to use this box (ubuntu/trusty64) in these lines. (these lines of code will accually go and download the box automaticlly). 
 
 ```
 Vagrant.configure(2) do |config|
