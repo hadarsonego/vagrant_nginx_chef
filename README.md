@@ -19,4 +19,4 @@ Vagrant
 
 2.After installtion open your command line and navigate to the diractiory that you created
 
-3.Run the command ... vagrant init ...
+3.Run the command  `vagrant init`
