@@ -4,7 +4,8 @@ Vagrant environment over virtualbox to auto install Nginx and provision it with 
 instructions
 ---
 
-#Downloads
+Downloads
+---
 
 1.Download Vagrant tool from Vagrant website - https://www.vagrantup.com/
 
