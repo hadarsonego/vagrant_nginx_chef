@@ -2,7 +2,7 @@
 Vagrant environment over virtualbox to auto install Nginx and provision it with Chef-solo
 
 instructions
---
+-----
 
 Downloads
 ---
