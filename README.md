@@ -10,7 +10,7 @@ Let me explain before we starting the step by step
 
 **Vagrant**
 
-The tool that will create the spicific machine that we want and will give us the option to select basic settings like IP and provision toll
+The tool that will create the spicific machine that we want and will give us the option to select basic settings like IP and provision tool
 
 
 **VirtualBox**
@@ -27,7 +27,7 @@ The provision tol that will help us to control our machine and deploy changes in
 
 The web server that will be used in our solutoin for this porpus and all-so will be used as our proxy (You will get it soon) 
 
-Let's start explaning - 
+**Let's start explaning -**
 
 The vagrant will start a machin as we like by reading the relevant vagrantfile that will be at the diractory wich we run vagrant from.
 
