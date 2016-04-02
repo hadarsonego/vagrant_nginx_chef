@@ -1,6 +1,32 @@
 # Jacada project - vagrant_nginx_chef
 Vagrant environment over virtualbox to auto install Nginx and provision it with Chef-solo
 
+#How the whole thing work?!
+
+Let me explain before we starting the step by step
+---
+
+We use 4 main tools for this solution  
+
+**Vagrant**
+
+The tool that will create the spicific machine that we want and will give us the option to select basic settings like IP and provision toll
+
+
+**VirtualBox**
+
+The host for our virtual machine (You can use anything from VMWare to AWS)
+
+
+**Chef-solo**
+
+The provision tol that will help us to control our machine and deploy changes in configuration if we like, this is why you can hear the name "configuration manegment tool" for Chef.
+
+
+**Nginx**
+
+The web server that will be used in our solutoin for this porpus and all-so will be used as our proxy (You will get it soon) 
+
 #instructions
 ----
 
