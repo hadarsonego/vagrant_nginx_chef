@@ -1,6 +1,17 @@
 # Jacada project - vagrant_nginx_chef
 Vagrant environment over virtualbox to auto install Nginx and provision it with Chef-solo
 
+#The main goals
+
+1. Create Nginx web server that will serve contant behaind another Nginx server that will act as proxy server
+
+2. Block and allow specific IP addresses to certain URL's  
+
+3. Make this all prosses working by easyly create the instance and make it up and running 
+
+4. Make this all solution manageble by working with configuration managment tool
+
+
 #How the whole thing work?!
 
 Let me give you a quick brief about the tools we use
