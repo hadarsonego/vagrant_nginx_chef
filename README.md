@@ -88,24 +88,24 @@ end
 chef-solo
 ---
 
-1. Create a folder tree called cookbooks/nginx/ (inside the same diractiory as the vagrantfile).
+1. Create a folder tree called cookbooks/nginx/ (inside the same directiory as the vagrantfile).
 
-2. Inside the nginx diractiory create 2 diractories named "files" & "recipes".
+2. Inside the nginx directiory create 2 directories named "files" & "recipes".
 
   A. files directiory - Will contain all the files that chef will sync with your machine (HTML's & conf files in our case)
 
-  B. recipes diractory - Will contain the recipe (set of instruction that the chef will do at chef run) for your machine in our case it called default.rb
+  B. recipes directory - Will contain the recipe (set of instruction that the chef will do at chef run) for your machine in our case it called default.rb
 
 Nginx
 ---
-You don't need to do anything manualy for the nginx the Chef-solo will take care of editing the relevant files for the it 
+You don't need to do anything manually for the nginx the Chef-solo will take care of editing the relevant files for the it 
 (You can edit the HTML files as you like)
 
 **The configuration file and how i used it**
 
 **nginx.conf**
 
-This is the main configuration file of the nginx, you can edit the "default" file under the directory "site-available" as well but i rether do all the configuratin centralize via only one file and not 2.
+This is the main configuration file of the nginx, you can edit the "default" file under the directory "site-available" as well but i rather do all the configuration centralize via only one file and not 2.
 If you like to do this like me you will need to edit the "default" file under the directory "site-available" and commant all the line for them not to be read by the service, if you won't do this your nginx will return error that you have conflict between the files.
 
 **What i configured**
