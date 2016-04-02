@@ -10,7 +10,7 @@ Let me explain before we starting the step by step
 
 **Vagrant**
 
-The tool that will create the spicific machine that we want and will give us the option to select basic settings like IP and provision tool
+The tool that will create the specific machine that we want and will give us the option to select basic settings like IP and provision tool
 
 
 **VirtualBox**
@@ -20,16 +20,16 @@ The host for our virtual machine (You can use anything from VMWare to AWS)
 
 **Chef-solo**
 
-The provision tol that will help us to control our machine and deploy changes in configuration if we like, this is why you can hear the name "configuration manegment tool" for Chef.
+The provision tol that will help us to control our machine and deploy changes in configuration if we like, this is why you can hear the name "configuration managment tool" for Chef.
 
 
 **Nginx**
 
-The web server that will be used in our solutoin for this porpus and all-so will be used as our proxy (You will get it soon) 
+The web server that will be used in our solution for this purpose and all-so will be used as our proxy (You will get it soon) 
 
-**Let's start explaning -**
+**Let's start explaining -**
 
-The vagrant will start a machin as we like by reading the relevant vagrantfile that will be at the diractory wich we run vagrant from.
+The vagrant will start a machin as we like by reading the relevant vagrantfile that will be at the directory which we run vagrant from.
 
 My vagrantfile installs the ubuntu/trusty64 vagrant box then name it to Ubuntu 14.04 , set the ip to 10.0.1.59 (you can use any ip that you like, take notice that it needs to be on the same subnet as your interface in Virtualbox, my interface is 10.0.1.1/24 so any ip from 10.0.1.2 to 10.0.1.x will be good) and set the provision to Chef and tell it to run the Nginx cookbook.
 
@@ -37,11 +37,11 @@ As the machine comes up the chef starts kicking by running the recipe that relat
 
 The chef will then read the recipe that contains the instruction for what to do.
 
-1. Install the nginx packege via machine packeg manager.
+1. Install the nginx package via machine package manager.
 
-2. Create all the relevant diractories inside the Nginx diractories.
+2. Create all the relevant directories inside the Nginx directories.
 
-3. Sync all relevant files from the "files" diractory under the cookbook at our local machine  (these are all the nginx costum HTML's and config files).
+3. Sync all relevant files from the "files" directory under the cookbook at our local machine  (these are all the nginx costume HTML's and config files).
 
 4. Restart the Nginx service for it to load all the new conf files and HTML's.
 
@@ -63,7 +63,7 @@ Downloads & Install
 Vagrant
 ---
 
-1.Create diractoty with any name that you want with read and execute privilege to all users.
+1.Create directory with any name that you want with read and execute privilege to all users.
 
 
 2.After installtion open your command line and navigate to the diractiory that you created.
@@ -71,7 +71,7 @@ Vagrant
 3.Run the command  `vagrant init` that will create a vagrantfile.
 
 4.You can take the vagrantfile that i uploaded to this repo (if so skip instruction 3) or just copy the contant to your vagrantfile you just created.
-**(You can take all the diractory i uploaded to this repo and past it there if you don't want to create them manually, it contains all the chef diractories and nginx nessesery files, i will talk about it in the chef section)**
+**(You can take all the directory i uploaded to this repo and past it there if you don't want to create them manually, it contains all the chef directories and nginx necessary files, i will talk about it in the chef section)**
 
 Vagrant Box's
 ---
