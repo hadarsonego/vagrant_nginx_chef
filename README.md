@@ -94,8 +94,22 @@ chef-solo
 
   A. files directiory - Will contain all the files that chef will sync with your machine (HTML's & conf files in our case)
 
-  B. recipes diractory - Will contain the recipe (set of instruction that the chef will do at chef run) for your machine in our case it   called default.rb
-  
+  B. recipes diractory - Will contain the recipe (set of instruction that the chef will do at chef run) for your machine in our case it called default.rb
+
+Nginx
+---
+You don't need to do anything manualy for the nginx the Chef-solo will take care of editing the relevant files for the it 
+(You can edit the HTML files as you like)
+
+**The configuration**
+
+1. 
+
+2. 
+
+3. 
+
+4.   
 #How the whole thing work?!
 
 #**Let's start explaining -**
