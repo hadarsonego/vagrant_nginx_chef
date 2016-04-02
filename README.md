@@ -106,11 +106,11 @@ You don't need to do anything manually for the nginx the Chef-solo will take car
 **nginx.conf**
 
 This is the main configuration file of the nginx, you can edit the "default" file under the directory "site-available" as well but i rather do all the configuration centralize via only one file and not 2.
-If you like to do this like me you will need to edit the "default" file under the directory "site-available" and commant all the line for them not to be read by the service, if you won't do this your nginx will return error that you have conflict between the files.
+If you like to do this like me you will need to edit the "default" file under the directory "site-available" and comment all the line for them not to be read by the service, if you won't do this your nginx will return error that you have conflict between the files.
 
 **What i configured**
 
-**all uder the http section**
+**all under the http section**
 
 ```
 http {
@@ -126,7 +126,7 @@ http {
 
 3. Proxy all traffic from this server to the `http://localhost:8080` server
 
-4. Proxy all request for `/admin/login/superuser/` to `http://localhost:8080/admin/login/superuser/` , Block/Allow traffic to it & forward all the 403 errors to another location that will return 401 insted. 
+4. Proxy all request for `/admin/login/superuser/` to `http://localhost:8080/admin/login/superuser/` , Block/Allow traffic to it & forward all the 403 errors to another location that will return 401 instead. 
 
 ``` 
 server {
@@ -202,7 +202,7 @@ gzip_disable "msie6";
 
 **Where to log**
 
-I was asked to create my own location for access logs, by default nginx vill store them under `/var/log/nginx/` i forced it to write the access logs to the `/var/log/nginx/hadarlog/` directory.
+I was asked to create my own location for access logs, by default nginx will store them under `/var/log/nginx/` i forced it to write the access logs to the `/var/log/nginx/hadarlog/` directory.
 
 ```
 ##
@@ -217,7 +217,7 @@ error_log /var/log/nginx/error.log;
 
 #**Let's start explaining**
 
-The vagrant will start a machin as we like by reading the relevant vagrantfile that will be at the directory which we run vagrant from.
+The vagrant will start a machine as we like by reading the relevant vagrantfile that will be at the directory which we run vagrant from.
 
 My vagrantfile installs the ubuntu/trusty64 vagrant box then name it to Ubuntu 14.04 , set the ip to 10.0.1.59 (you can use any ip that you like, take notice that it needs to be on the same subnet as your interface in Virtualbox, my interface is 10.0.1.1/24 so any ip from 10.0.1.2 to 10.0.1.x will be good) and set the provision to Chef and tell it to run the Nginx cookbook.
 
@@ -237,14 +237,14 @@ The chef will then read the recipe that contains the instruction for what to do.
 **Ok i got it now how do i make this whole operation up and running??**
 ---
 
-When you are ready and all the files are in place (The diractory with the vagrant file on your computer) you need to do the simplest thing, just run from the command line (from the vagrantfile location) `vagrant up` , it will take some time because the vagrant need to download the relevant box and then install it, when it's done you can try go to your website via the IP you gave to the machine.
+When you are ready and all the files are in place (The directory with the vagrant file on your computer) you need to do the simplest thing, just run from the command line (from the vagrantfile location) `vagrant up` , it will take some time because the vagrant need to download the relevant box and then install it, when it's done you can try go to your website via the IP you gave to the machine.
 
 **Important notes**
 ---
 
-1. Dont forgat to change the ip on the vagrant file i uploaded to the same subnet as your virtualbox interface 
+1. Don't forget to change the ip on the vagrant file i uploaded to the same subnet as your virtualbox interface 
 
-2. Feel free to edit the HTML files as you like , but remember you need to edit them on your computer and not on the virtualbox machine , if you will do it on the VirtualBox machine the whole thing will be deleted the moment you will run Chef because the recipe tell Chef to take the files fron your computer and replace the one's on the machine with them.
+2. Feel free to edit the HTML files as you like , but remember you need to edit them on your computer and not on the virtualbox machine , if you will do it on the VirtualBox machine the whole thing will be deleted the moment you will run Chef because the recipe tell Chef to take the files from your computer and replace the one's on the machine with them.
 To make the changes work just run `vagrant --provision` , this will make the chef run and do what he knows to do.
 
 
