@@ -120,6 +120,14 @@ http {
 
 **The first nginx site**
 
+1. Create a server that listen to port 80 http
+
+2. tell the Nginx where to find the relevant files for the website
+
+3. Proxy all traffic from this server to the `http://localhost:8080` server
+
+4. Proxy all request for `/admin/login/superuser/` to `http://localhost:8080/admin/login/superuser/` , Block/Allow traffic to it & forward all the 403 errors to another location that will return 401 insted. 
+
 ``` 
 server {
         listen 80 default_server;
@@ -152,6 +160,10 @@ server {
 
 **The second nginx site**
 
+1. Create a server that listen to port 8080 http
+
+2. tell the Nginx where to find the relevant files for the website (The Admin console this time).
+
 ```
         server {
 
@@ -177,6 +189,8 @@ server {
 
 **The Gzip compression**
 
+Simple configuration that make this nginx compress the content with gzip.
+
 ```
 ##
 # Gzip Settings
@@ -187,6 +201,8 @@ gzip_disable "msie6";
 ```
 
 **Where to log**
+
+I was asked to create my own location for access logs, by default nginx vill store them under `/var/log/nginx/` i forced it to write the access logs to the `/var/log/nginx/hadarlog/` directory.
 
 ```
 ##
