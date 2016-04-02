@@ -215,7 +215,7 @@ error_log /var/log/nginx/error.log;
 
 #How the whole thing work?!
 
-#**Let's start explaining **
+#**Let's start explaining**
 
 The vagrant will start a machin as we like by reading the relevant vagrantfile that will be at the directory which we run vagrant from.
 
