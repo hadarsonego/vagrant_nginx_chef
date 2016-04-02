@@ -237,7 +237,7 @@ The chef will then read the recipe that contains the instruction for what to do.
 **Ok i got it now how do i make this whole operation up and running??**
 ---
 
-When you are ready and all the files are in place (The diractory with the vagrant file on your computer) you need to do the simplest thing, just run from the command line `vagrant up` , it will take some time because the vagrant need to download the relevant box and then install it, when it's done you can try go to your website via the IP you gave to the machine.
+When you are ready and all the files are in place (The diractory with the vagrant file on your computer) you need to do the simplest thing, just run from the command line (from the vagrantfile location) `vagrant up` , it will take some time because the vagrant need to download the relevant box and then install it, when it's done you can try go to your website via the IP you gave to the machine.
 
 **Important notes**
 ---
