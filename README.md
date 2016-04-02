@@ -245,6 +245,6 @@ When you are ready and all the files are in place (The diractory with the vagran
 1. Dont forgat to change the ip on the vagrant file i uploaded to the same subnet as your virtualbox interface 
 
 2. Feel free to edit the HTML files as you like , but remember you need to edit them on your computer and not on the virtualbox machine , if you will do it on the VirtualBox machine the whole thing will be deleted the moment you will run Chef because the recipe tell Chef to take the files fron your computer and replace the one's on the machine with them.
-To make the changes work just run `vagrant --provision` , this will make the chef run and do what he know to do.
+To make the changes work just run `vagrant --provision` , this will make the chef run and do what he knows to do.
 
 
