@@ -3,13 +3,13 @@ Vagrant environment over virtualbox to auto install Nginx and provision it with 
 
 #The main goals
 
-1. Create Nginx web server that will serve contant behaind another Nginx server that will act as proxy server
+1. Create Nginx web server that will serve content behind another Nginx server that will act as proxy server
 
 2. Block and allow specific IP addresses to certain URL's  
 
-3. Make this all prosses working by easyly create the instance and make it up and running 
+3. Make this all process working by easily create the instance and make it up and running 
 
-4. Make this all solution manageble by working with configuration managment tool
+4. Make this all solution manageable by working with configuration managment tool
 
 
 
@@ -30,7 +30,7 @@ The host for our virtual machine (You can use anything from VMWare to AWS)
 
 **Chef-solo**
 
-The provision tol that will help us to control our machine and deploy changes in configuration if we like, this is why you can hear the name "configuration managment tool" for Chef.
+The provision tool that will help us to control our machine and deploy changes in configuration if we like, this is why you can hear the name "configuration managment tool" for Chef.
 
 
 **Nginx**
@@ -58,11 +58,11 @@ Vagrant
 1. Create directory with any name that you want with read and execute privilege to all users.
 
 
-2. After installtion open your command line and navigate to the diractiory that you created.
+2. After installation open your command line and navigate to the directory that you created.
 
 3. Run the command  `vagrant init` that will create a vagrantfile.
 
-4. You can take the vagrantfile that i uploaded to this repo (if so skip instruction 3) or just copy the contant to your vagrantfile you just created.
+4. You can take the vagrantfile that i uploaded to this repo (if so skip instruction 3) or just copy the content to your vagrantfile you just created.
 **(You can take all the directory i uploaded to this repo and past it there if you don't want to create them manually, it contains all the chef directories and nginx necessary files, i will talk about it in the chef section)**
 
 Vagrant Box's
