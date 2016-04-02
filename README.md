@@ -101,15 +101,45 @@ Nginx
 You don't need to do anything manualy for the nginx the Chef-solo will take care of editing the relevant files for the it 
 (You can edit the HTML files as you like)
 
-**The configuration**
+**The configuration file and how i used it**
 
-1. 
+**nginx.conf**
 
-2. 
+This is the main configuration file of the nginx, you can edit the "default" file under the directory "site-available" as well but i rether do all the configuratin centralize via only one file and not 2.
+If you like to do this like me you will need to edit the "default" file under the directory "site-available" and commant all the line for them not to be read by the service, if you won't do this your nginx will return error that you have conflict between the files.
 
-3. 
+**What i configured**
 
-4.   
+``` 
+server {
+        listen 80 default_server;
+        listen [::]:80 default_server ipv6only=on;
+
+        root /usr/share/nginx/html;
+        index index.html index.htm;
+                # Make site accessible from http://localhost/
+        server_name localhost;
+        location / {
+                # First attempt to serve request as file, then
+                # as directory, then fall back to displaying a 404.
+                proxy_pass http://localhost:8080;
+                try_files $uri $uri/ =404;
+                # Uncomment to enable naxsi on this location
+                # include /etc/nginx/naxsi.rules
+        }
+        location  /admin/login/superuser/ {
+                proxy_pass http://localhost:8080/admin/login/superuser/;
+                allow 10.0.1.1;
+                allow 212.199.129.1;
+                deny all;
+                error_page 403 = @unauthorized;
+        }
+        location @unauthorized {
+                return 401;
+        }
+        }
+```  
+
 #How the whole thing work?!
 
 #**Let's start explaining -**
