@@ -110,6 +110,16 @@ If you like to do this like me you will need to edit the "default" file under th
 
 **What i configured**
 
+**all uder the http section**
+
+```
+http {
+
+    }
+```
+
+**The first nginx site**
+
 ``` 
 server {
         listen 80 default_server;
@@ -139,6 +149,53 @@ server {
         }
         }
 ```  
+
+**The second nginx site**
+
+```
+        server {
+
+        listen 8080 default_server;
+        listen [::]:8080 default_server ipv6only=on;
+
+        root /usr/share/nginx/newhtml;
+        index index.html index.htm admin.html;
+
+        # Make site accessible from http://localhost/
+        server_name localhost;
+
+        location / {
+                # First attempt to serve request as file, then
+                # as directory, then fall back to displaying a 404.
+                try_files $uri $uri/ =404;
+                # Uncomment to enable naxsi on this location
+                # include /etc/nginx/naxsi.rules
+                }
+
+        
+```
+
+**The Gzip compression**
+
+```
+##
+# Gzip Settings
+##
+
+gzip on;
+gzip_disable "msie6";
+```
+
+**Where to log**
+
+```
+##
+# Logging Settings
+##
+        
+access_log /var/log/nginx/hadarlog/access.log;
+error_log /var/log/nginx/error.log;
+```
 
 #How the whole thing work?!
 
