@@ -27,7 +27,7 @@ The provision tol that will help us to control our machine and deploy changes in
 
 The web server that will be used in our solution for this purpose and all-so will be used as our proxy (You will get it soon) 
 
-**Let's start explaining -**
+#**Let's start explaining -**
 
 The vagrant will start a machin as we like by reading the relevant vagrantfile that will be at the directory which we run vagrant from.
 
