@@ -6,7 +6,7 @@ Vagrant environment over virtualbox to auto install Nginx and provision it with 
 Let me explain before we starting the step by step
 ---
 
-We use 4 main tools for this solution  
+**We use 4 main tools for this solution**  
 
 **Vagrant**
 
@@ -26,6 +26,25 @@ The provision tol that will help us to control our machine and deploy changes in
 **Nginx**
 
 The web server that will be used in our solutoin for this porpus and all-so will be used as our proxy (You will get it soon) 
+
+Let's start explaning - 
+
+The vagrant will start a machin as we like by reading the relevant vagrantfile that will be at the diractory wich we run vagrant from.
+
+My vagrantfile installs the ubuntu/trusty64 vagrant box then name it to Ubuntu 14.04 , set the ip to 10.0.1.59 (you can use any ip that you like, take notice that it needs to be on the same subnet as your interface in Virtualbox, my interface is 10.0.1.1/24 so any ip from 10.0.1.2 to 10.0.1.x will be good) and set the provision to Chef and tell it to run the Nginx cookbook.
+
+As the machine comes up the chef starts kicking by running the recipe that related to the cookbook.
+
+The chef will then read the recipe that contains the instruction for what to do.
+
+1. Install the nginx packege via machine packeg manager.
+
+2. Create all the relevant diractories inside the Nginx diractories.
+
+3. Create all the relevant files by sync them from the "files" diractory under the cookbook (these are all the nginx costum HTML's and config files
+
+4. Restart the Nginx service for it to load all the new conf files and HTML's.
+
 
 #instructions
 ----
