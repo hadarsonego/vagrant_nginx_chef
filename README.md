@@ -3,7 +3,7 @@ Vagrant environment over virtualbox to auto install Nginx and provision it with 
 
 #How the whole thing work?!
 
-Let me explain before we starting the step by step
+Let me give you a quick brief about the tools we use
 ---
 
 **We use 4 main tools for this solution**  
