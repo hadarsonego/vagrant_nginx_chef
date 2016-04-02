@@ -12,7 +12,6 @@ Vagrant environment over virtualbox to auto install Nginx and provision it with 
 4. Make this all solution manageble by working with configuration managment tool
 
 
-#How the whole thing work?!
 
 Let me give you a quick brief about the tools we use
 ---
@@ -37,24 +36,6 @@ The provision tol that will help us to control our machine and deploy changes in
 **Nginx**
 
 The web server that will be used in our solution for this purpose and all-so will be used as our proxy (You will get it soon) 
-
-#**Let's start explaining -**
-
-The vagrant will start a machin as we like by reading the relevant vagrantfile that will be at the directory which we run vagrant from.
-
-My vagrantfile installs the ubuntu/trusty64 vagrant box then name it to Ubuntu 14.04 , set the ip to 10.0.1.59 (you can use any ip that you like, take notice that it needs to be on the same subnet as your interface in Virtualbox, my interface is 10.0.1.1/24 so any ip from 10.0.1.2 to 10.0.1.x will be good) and set the provision to Chef and tell it to run the Nginx cookbook.
-
-As the machine comes up the chef starts kicking by running the recipe that related to the cookbook.
-
-The chef will then read the recipe that contains the instruction for what to do.
-
-1. Install the nginx package via machine package manager.
-
-2. Create all the relevant directories inside the Nginx directories.
-
-3. Sync all relevant files from the "files" directory under the cookbook at our local machine  (these are all the nginx costume HTML's and config files).
-
-4. Restart the Nginx service for it to load all the new conf files and HTML's.
 
 
 #instructions
@@ -115,3 +96,22 @@ chef-solo
 
   B. recipes diractory - Will contain the recipe (set of instruction that the chef will do at chef run) for your machine in our case it   called default.rb
   
+#How the whole thing work?!
+
+#**Let's start explaining -**
+
+The vagrant will start a machin as we like by reading the relevant vagrantfile that will be at the directory which we run vagrant from.
+
+My vagrantfile installs the ubuntu/trusty64 vagrant box then name it to Ubuntu 14.04 , set the ip to 10.0.1.59 (you can use any ip that you like, take notice that it needs to be on the same subnet as your interface in Virtualbox, my interface is 10.0.1.1/24 so any ip from 10.0.1.2 to 10.0.1.x will be good) and set the provision to Chef and tell it to run the Nginx cookbook.
+
+As the machine comes up the chef starts kicking by running the recipe that related to the cookbook.
+
+The chef will then read the recipe that contains the instruction for what to do.
+
+1. Install the nginx package via machine package manager.
+
+2. Create all the relevant directories inside the Nginx directories.
+
+3. Sync all relevant files from the "files" directory under the cookbook at our local machine  (these are all the nginx costume HTML's and config files).
+
+4. Restart the Nginx service for it to load all the new conf files and HTML's.
