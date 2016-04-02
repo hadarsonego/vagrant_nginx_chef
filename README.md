@@ -215,7 +215,7 @@ error_log /var/log/nginx/error.log;
 
 #How the whole thing work?!
 
-#**Let's start explaining -**
+#**Let's start explaining **
 
 The vagrant will start a machin as we like by reading the relevant vagrantfile that will be at the directory which we run vagrant from.
 
@@ -232,3 +232,18 @@ The chef will then read the recipe that contains the instruction for what to do.
 3. Sync all relevant files from the "files" directory under the cookbook at our local machine  (these are all the nginx costume HTML's and config files).
 
 4. Restart the Nginx service for it to load all the new conf files and HTML's.
+
+
+**Ok i got it now how do i make this whole operation up and running??**
+---
+
+When you are ready and all the files are in place (The diractory with the vagrant file on your computer) you need to do the simplest thing, just run from the command line `vagrant up` , it will take some time because the vagrant need to download the relevant box and then install it, when it's done you can try go to your website via the IP you gave to the machine.
+
+**Important notes**
+---
+
+1. Dont forgat to change the ip on the vagrant file i uploaded to the same subnet as your virtualbox interface 
+
+2. Feel free to edit the HTML files as you like , but remember you need to edit them on your computer and not on the virtualbox machine , if you will do it on the VirtualBox machine the whole thing will be deleted the moment you will run Chef because the recipe tell Chef to take the files fron your computer and replace the one's on the machine with them.
+
+
