@@ -41,7 +41,7 @@ The chef will then read the recipe that contains the instruction for what to do.
 
 2. Create all the relevant diractories inside the Nginx diractories.
 
-3. Create all the relevant files by sync them from the "files" diractory under the cookbook (these are all the nginx costum HTML's and config files
+3. Sync all relevant files from the "files" diractory under the cookbook at our local machine  (these are all the nginx costum HTML's and config files).
 
 4. Restart the Nginx service for it to load all the new conf files and HTML's.
 
