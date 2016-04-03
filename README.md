@@ -197,7 +197,6 @@ Simple configuration that make this nginx compress the content with gzip.
 ##
 
 gzip on;
-gzip_disable "msie6";
 ```
 
 **Where to log**
