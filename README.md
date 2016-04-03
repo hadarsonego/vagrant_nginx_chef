@@ -126,7 +126,7 @@ http {
 
 3. Proxy all traffic from this server to the `http://localhost:8080` server
 
-4. Proxy all request for `/admin/login/superuser/` to `http://localhost:8080/admin/login/superuser/` , Block/Allow traffic to it & forward all the 403 errors to another location that will return 401 instead. 
+4. Proxy all request for `/admin/login/superuser/` to `http://localhost:8080/admin/login/superuser/` , Block/Allow traffic to it(I allowed 10.0.1.1 for testing if you like to block yourself don't allow your ip) & forward all the 403 errors to another location that will return 401 instead. 
 
 ``` 
 server {
