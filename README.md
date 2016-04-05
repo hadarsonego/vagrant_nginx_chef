@@ -51,6 +51,11 @@ Downloads & Install
 
 #Getting ready
 
+My repo
+---
+
+You don't have to create manually the folders and files although i expain how to do it, you can just clone my repo to the folder that you want the vagrant to work from.
+
 
 Vagrant
 ---
@@ -88,7 +93,7 @@ end
 chef-solo
 ---
 
-1. Create a folder tree called cookbooks/nginx/ (inside the same directiory as the vagrantfile).
+1. Create a folder tree called cookbooks/nginx/ or just clone my repo to the folder that you want (inside the same directiory as the vagrantfile).
 
 2. Inside the nginx directiory create 2 directories named "files" & "recipes".
 
@@ -106,7 +111,7 @@ You don't need to do anything manually for the nginx the Chef-solo will take car
 **nginx.conf**
 
 This is the main configuration file of the nginx, you can edit the "default" file under the directory "site-available" as well but i rather do all the configuration centralize via only one file and not 2.
-If you like to do this like me you will need to edit the "default" file under the directory "site-available" and comment all the line for them not to be read by the service, if you won't do this your nginx will return error that you have conflict between the files.
+If you like to do this like me you will need to edit the "default" file under the directory "site-available" and comment all the line for them not to be read by the service, if you won't do this your nginx will return error that you have conflict between the files (my repo do the comment of all files in default automaticlly).
 
 **What i configured**
 
@@ -211,6 +216,12 @@ I was asked to create my own location for access logs, by default nginx will sto
 access_log /var/log/nginx/hadarlog/access.log;
 error_log /var/log/nginx/error.log;
 ```
+**Important note abour the Nginx conf file**
+
+I used the attribute function of the chef solo with template and created all the file with attribute that there value is inside the "attributes" directory , feel free to cahnge it as you like.
+
+For example - 
+I use The `default['nginx']['allowip1'] = '10.0.1.1'` attribute to manage access to the admin console, on the ngin conf template it will look like this - `<%= node['nginx']['allowip1'] %>;` the value of this piece of code is simplly `'10.0.1.1'` , this way i manage the nginx.conf more smartlly and store all the important values in one place.
 
 #How the whole thing work?!
 
@@ -224,7 +235,9 @@ As the machine comes up the chef starts kicking by running the recipe that relat
 
 The chef will then read the recipe that contains the instruction for what to do.
 
-1. Install the nginx package via machine package manager.
+1. Read all the cooksbooks in the cookbooks directory, one of the is the Nginx cookbook i downloaded from the chef website.
+
+2. 
 
 2. Create all the relevant directories inside the Nginx directories.
 
