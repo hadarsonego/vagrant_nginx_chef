@@ -93,11 +93,11 @@ end
 chef-solo
 ---
 
-1. Create a folder tree called cookbooks/nginx/ or just clone my repo to the folder that you want (inside the same directiory as the vagrantfile).
+1. Create a folder tree called cookbooks/nginx/ or just clone my repo to the folder that you want (inside the same directory as the vagrantfile).
 
-2. Inside the nginx directiory create 2 directories named "files" & "recipes".
+2. Inside the nginx directory create 2 directories named "files" & "recipes".
 
-  A. files directiory - Will contain all the files that chef will sync with your machine (HTML's & conf files in our case)
+  A. files directory - Will contain all the files that chef will sync with your machine (HTML's & conf files in our case)
 
   B. recipes directory - Will contain the recipe (set of instruction that the chef will do at chef run) for your machine in our case it called default.rb
 
@@ -111,9 +111,9 @@ You don't need to do anything manually for the nginx the Chef-solo will take car
 **nginx.conf**
 
 This is the main configuration file of the nginx, you can edit the "default" file under the directory "site-available" as well but i rather do all the configuration centralize via only one file and not 2.
-If you like to do this like me you will need to edit the "default" file under the directory "site-available" and comment all the line for them not to be read by the service, if you won't do this your nginx will return error that you have conflict between the files (my repo do the comment of all files in default automaticlly).
+If you like to do this like me you will need to edit the "default" file under the directory "site-available" and comment all the line for them not to be read by the service, if you won't do this your nginx will return error that you have conflict between the files (my repo do the comment of all files in default automatically).
 
-**Important note abour the Nginx conf file**
+**Important note about the Nginx conf file**
 
 I used the attribute function of the chef solo with template and created all the file with attribute that there value is inside the "attributes" directory , feel free to cahnge it as you like.
 
@@ -132,7 +132,7 @@ http {
 
 **The upstream module**
 
-This is a way of declare upsteam servers that you can use these declatations to proxy in more easy way, it scale good as well.
+This is a way of declare upsteam servers that you can use these declarations to proxy in more easy way, it scale good as well.
 
 ```
 upstream backend {
@@ -214,7 +214,7 @@ upstream backend {
 
 **The Gzip compression**
 
-Simple configuration that make this nginx compress the content with gzip, the on/off can be change in the chef atrributes.
+Simple configuration that make this nginx compress the content with gzip, the on/off can be change in the chef attributes.
 
 ```
 ##
@@ -249,7 +249,7 @@ As the machine comes up the chef starts kicking by running the recipe that relat
 
 The chef will then read the recipe that contains the instruction for what to do.
 
-1. Read all the cooksbooks in the cookbooks directory, one of them is the Nginx cookbook i downloaded from the chef website.
+1. Read all the cookbooks in the cookbooks directory, one of them is the Nginx cookbook i downloaded from the chef website.
 
 2. The nginx will be installed when it's recipe will start.
 
