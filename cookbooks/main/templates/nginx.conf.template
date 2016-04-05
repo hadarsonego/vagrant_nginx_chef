@@ -1,0 +1,93 @@
+user www-data;
+worker_processes 4;
+pid /run/nginx.pid;
+
+events {
+        worker_connections 768;
+        # multi_accept on;
+}
+
+http {
+        upstream backend {
+                server localhost:8080;
+    
+        }
+
+        server {
+        listen 80 default_server;
+        listen [::]:80 default_server ipv6only=on;
+
+        root /usr/share/nginx/html;
+        index index.html index.htm;
+                # Make site accessible from http://localhost/
+        server_name localhost;
+        location / {
+                # First attempt to serve request as file, then
+                # as directory, then fall back to displaying a 404.
+                proxy_pass http://backend;
+                try_files $uri $uri/ =404;
+                # Uncomment to enable naxsi on this location
+                # include /etc/nginx/naxsi.rules
+        }
+        location  /admin/login/superuser/ {
+                proxy_pass http://backend/<%= node['nginx']['adminproxy'] %>/;
+                allow <%= node['nginx']['allowip1'] %>;
+                allow <%= node['nginx']['allowip2'] %>;
+                deny all;
+                error_page 403 = @unauthorized;
+        }
+        location @unauthorized {
+                return 401;
+        }
+        
+        }
+
+        server {
+
+        listen 8080 default_server;
+        listen [::]:8080 default_server ipv6only=on;
+
+        root <%= node['nginx']['rootlocation'] %>;
+        index index.html index.htm admin.html;
+
+        # Make site accessible from http://localhost/
+        server_name localhost;
+
+        location / {
+                # First attempt to serve request as file, then
+                # as directory, then fall back to displaying a 404.
+                try_files $uri $uri/ =404;
+                # Uncomment to enable naxsi on this location
+                # include /etc/nginx/naxsi.rules
+                }
+
+        }
+
+        ##
+        # Basic Settings
+        ##
+
+        sendfile on;
+        tcp_nopush on;
+        tcp_nodelay on;
+        keepalive_timeout 65;
+        types_hash_max_size 2048;
+       
+
+        include /etc/nginx/mime.types;
+        default_type application/octet-stream;
+
+        ##
+        # Logging Settings
+        ##
+        
+        access_log /var/log/nginx/hadarlog/access.log;
+        error_log /var/log/nginx/error.log;
+
+        ##
+        # Gzip Settings
+        ##
+
+        gzip <%= node['nginx']['gzipswitch'] %>;
+        
+        }

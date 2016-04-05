@@ -19,9 +19,16 @@ Vagrant.configure(2) do |config|
   config.vm.network :private_network, ip: "10.0.1.59"
   #config.vm.provision "shell", path: "script.sh"
   config.vm.provision "chef_solo" do |chef|
+    chef.add_recipe "apt"
+    chef.add_recipe "build-essential"
+    chef.add_recipe "ohai"
+    chef.add_recipe "runit"    
+    chef.add_recipe "rsyslog"
     chef.add_recipe "nginx"
-  end
+    chef.add_recipe "main"
 
+  end
+ 
   # Disable automatic box update checking. If you disable this, then
   # boxes will only be checked for updates when the user runs
   # `vagrant box outdated`. This is not recommended.

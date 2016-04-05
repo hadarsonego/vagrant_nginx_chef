@@ -1,74 +1,31 @@
-package "nginx" #apt-get install nginx -y
-#Run Nginx service
+#
+# Cookbook Name:: nginx
+# Recipe:: default
+#
+# Author:: AJ Christensen <aj@junglist.gen.nz>
+#
+# Copyright 2008-2013, Chef Software, Inc.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+#
 
-#creat the newhtml diractory
-directory '/usr/share/nginx/newhtml' do
-	owner 'root'
-	group 'root'
-	mode '0755'
-	action :create
-end
-###
-#Creating diractories
-###
-#creat the Admin console diractory tree
-directory '/usr/share/nginx/newhtml/admin' do
-	owner 'root'
-	group 'root'
-	mode '0755'
-	action :create
-end
-#creat the login diractory
-directory '/usr/share/nginx/newhtml/admin/login' do
-	owner 'root'
-	group 'root'
-	mode '0755'
-	action :create
-end
-#creat the superuser diractory
-directory '/usr/share/nginx/newhtml/admin/login/superuser' do
-	owner 'root'
-	group 'root'
-	mode '0755'
-	action :create
-end
-#creat the hadarlog custom diractory
-directory '/var/log/nginx/hadarlog' do
-	owner 'root'
-	group 'root'
-	mode '0755'
-	action :create
-end
-###
-#Creating files
-###
-#create the admin colsole html page
-cookbook_file '/usr/share/nginx/newhtml/admin/login/superuser/admin.html' do
-	source 'admin.html'
-	mode '0644'
-end
-#replace nginx.conf originl file with our file
-cookbook_file '/etc/nginx/nginx.conf' do
-	source 'nginx.conf'
-	mode '0644'
-end
-#replace index.html originl file with our file
-cookbook_file '/usr/share/nginx/newhtml/index.html' do
-	source 'index.html'
-	mode '0644'
-end
-#replace 50x.html originl file with our file
-	cookbook_file '/usr/share/nginx/newhtml/50x.html' do
-	source '50x.html'
- mode '0644'
-end
-#replace default file inside nginx site-available with our file
-	cookbook_file '/etc/nginx/sites-available/default' do
-	source 'default'
- mode '0644'
-end
+include_recipe "nginx::#{node['nginx']['install_method']}"
 
-#restart nginx service
 service 'nginx' do
-  action [ :enable, :restart ]
+  supports :status => true, :restart => true, :reload => true
+  action   :start
+end
+
+node['nginx']['default']['modules'].each do |ngx_module|
+  include_recipe "nginx::#{ngx_module}"
 end

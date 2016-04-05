@@ -1,0 +1,6 @@
+default['nginx']['adminproxy'] = 'admin/login/superuser'
+default['nginx']['allowip1'] = '10.0.1.1'
+default['nginx']['allowip2'] = '212.199.129.1'
+default['nginx']['rootlocation'] = '/usr/share/nginx/newhtml'
+default['nginx']['customlogdir'] = '/var/log/nginx/hadarlog/access.log'
+default['nginx']['gzipswitch'] = 'on'
