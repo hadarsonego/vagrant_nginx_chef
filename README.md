@@ -113,6 +113,13 @@ You don't need to do anything manually for the nginx the Chef-solo will take car
 This is the main configuration file of the nginx, you can edit the "default" file under the directory "site-available" as well but i rather do all the configuration centralize via only one file and not 2.
 If you like to do this like me you will need to edit the "default" file under the directory "site-available" and comment all the line for them not to be read by the service, if you won't do this your nginx will return error that you have conflict between the files (my repo do the comment of all files in default automaticlly).
 
+**Important note abour the Nginx conf file**
+
+I used the attribute function of the chef solo with template and created all the file with attribute that there value is inside the "attributes" directory , feel free to cahnge it as you like.
+
+For example - 
+I use The `default['nginx']['allowip1'] = '10.0.1.1'` attribute to manage access to the admin console, on the ngin conf template it will look like this - `<%= node['nginx']['allowip1'] %>;` the value of this piece of code is simplly `'10.0.1.1'` , this way i manage the nginx.conf more smartlly and store all the important values in one place.
+
 **What i configured**
 
 **all under the http section**
@@ -121,6 +128,17 @@ If you like to do this like me you will need to edit the "default" file under th
 http {
 
     }
+```
+
+**The upstream module**
+
+This is a way of declare upsteam servers that you can use these declatations to proxy in more easy way, it scale good as well.
+
+```
+upstream backend {
+                server localhost:8080;
+    
+        }
 ```
 
 **The first nginx site**
@@ -134,7 +152,7 @@ http {
 4. Proxy all request for `/admin/login/superuser/` to `http://localhost:8080/admin/login/superuser/` , Block/Allow traffic to it(I allowed 10.0.1.1 for testing if you like to block yourself don't allow your ip) & forward all the 403 errors to another location that will return 401 instead. 
 
 ``` 
-server {
+        server {
         listen 80 default_server;
         listen [::]:80 default_server ipv6only=on;
 
@@ -145,21 +163,22 @@ server {
         location / {
                 # First attempt to serve request as file, then
                 # as directory, then fall back to displaying a 404.
-                proxy_pass http://localhost:8080;
+                proxy_pass http://backend;
                 try_files $uri $uri/ =404;
                 # Uncomment to enable naxsi on this location
                 # include /etc/nginx/naxsi.rules
         }
         location  /admin/login/superuser/ {
-                proxy_pass http://localhost:8080/admin/login/superuser/;
-                allow 10.0.1.1;
-                allow 212.199.129.1;
+                proxy_pass http://backend/<%= node['nginx']['adminproxy'] %>/;
+                allow <%= node['nginx']['allowip1'] %>;
+                allow <%= node['nginx']['allowip2'] %>;
                 deny all;
                 error_page 403 = @unauthorized;
         }
         location @unauthorized {
                 return 401;
         }
+        
         }
 ```  
 
@@ -175,7 +194,7 @@ server {
         listen 8080 default_server;
         listen [::]:8080 default_server ipv6only=on;
 
-        root /usr/share/nginx/newhtml;
+        root <%= node['nginx']['rootlocation'] %>;
         index index.html index.htm admin.html;
 
         # Make site accessible from http://localhost/
@@ -189,39 +208,34 @@ server {
                 # include /etc/nginx/naxsi.rules
                 }
 
-        
+        }
+   
 ```
 
 **The Gzip compression**
 
-Simple configuration that make this nginx compress the content with gzip.
+Simple configuration that make this nginx compress the content with gzip, the on/off can be change in the chef atrributes.
 
 ```
 ##
 # Gzip Settings
 ##
 
-gzip on;
+gzip <%= node['nginx']['gzipswitch'] %>;
 ```
 
 **Where to log**
 
-I was asked to create my own location for access logs, by default nginx will store them under `/var/log/nginx/` i forced it to write the access logs to the `/var/log/nginx/hadarlog/` directory.
+I was asked to create my own location for access logs, by default nginx will store them under `/var/log/nginx/` i forced it to write the access logs to the `/var/log/nginx/hadarlog/` directory you can see that in the chef attribute file.
 
 ```
 ##
 # Logging Settings
 ##
         
-access_log /var/log/nginx/hadarlog/access.log;
+access_log <%= node['nginx']['customlogdir'] %>;
 error_log /var/log/nginx/error.log;
 ```
-**Important note abour the Nginx conf file**
-
-I used the attribute function of the chef solo with template and created all the file with attribute that there value is inside the "attributes" directory , feel free to cahnge it as you like.
-
-For example - 
-I use The `default['nginx']['allowip1'] = '10.0.1.1'` attribute to manage access to the admin console, on the ngin conf template it will look like this - `<%= node['nginx']['allowip1'] %>;` the value of this piece of code is simplly `'10.0.1.1'` , this way i manage the nginx.conf more smartlly and store all the important values in one place.
 
 #How the whole thing work?!
 
@@ -235,13 +249,15 @@ As the machine comes up the chef starts kicking by running the recipe that relat
 
 The chef will then read the recipe that contains the instruction for what to do.
 
-1. Read all the cooksbooks in the cookbooks directory, one of the is the Nginx cookbook i downloaded from the chef website.
+1. Read all the cooksbooks in the cookbooks directory, one of them is the Nginx cookbook i downloaded from the chef website.
 
-2. 
+2. The nginx will be installed when it's recipe will start.
 
 2. Create all the relevant directories inside the Nginx directories.
 
-3. Sync all relevant files from the "files" directory under the cookbook at our local machine  (these are all the nginx costume HTML's and config files).
+3. Create the nginx.conf with the template in the "main" cookbook and place it in the `/etc/nginx/` directory
+ 
+4. Sync all relevant files from the "files" directory under the cookbook at our local machine  (these are all the nginx costume HTML's and the site-available config file).
 
 4. Restart the Nginx service for it to load all the new conf files and HTML's.
 
